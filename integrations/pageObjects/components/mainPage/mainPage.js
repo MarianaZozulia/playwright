@@ -1,4 +1,5 @@
 import BasePage from "../../BasePage";
+const { expect } = require('@playwright/test');
 
 
 export default class MainPage extends BasePage{
@@ -28,7 +29,6 @@ export default class MainPage extends BasePage{
     }
 
     async successUserRegistration(user){  
-      console.log('Filling user details:', user); 
       await this.fill(this.name, user.name);
       await this.fill(this.lastname, user.lastname);
       await this.fill(this.email, user.email);
@@ -38,54 +38,19 @@ export default class MainPage extends BasePage{
         
     }
 
-    async showEmptyNameError(){
-      await this.name.click();
-      await this.registerModal.click();   
+    async showInvalidInputError(selector, invalidValue, nextSelector) {
+      await selector.fill(invalidValue);
+      await nextSelector.click();
+    } 
+
+    async showEmptyFieldError(selector, nextSelector){
+      await selector.click();
+      await nextSelector.click();
     }
 
-    async showInvalidNameError(){
-      await this.name.fill("^^");
-      await this.lastname.click(); 
-    }
-
-    async showWrongLengthNameError(){
-      await this.name.fill("M");
-      await this.lastname.click();
-    }
-
-    async showEmptyLastnameError(){
-      await this.lastname.click();
-      await this.registerModal.click();  
-    }
-
-    async showInvalidLastnameError(){
-      await this.lastname.fill("^^");
-      await this.email.click();
-    }
-
-    async showWrongLengthLastnameError(){
-      await this.lastname.fill("M");
-      await this.email.click();
-    }
-
-    async showIncorrectEmailError(){
-      await this.email.fill("M");
-      await this.password.click(); 
-    }
-
-    async showEmptyEmailError(){
-      await this.email.click();
-      await this.password.click();  
-    }
-
-    async showEmptyPasswordError(){
-      await this.password.click();
-      await this.repeatPassword.click();  
-    }
-
-    async showWrongPasswordError(){
-      await this.password.fill("g");
-      await this.repeatPassword.click();  
+    async checkErrorMessageText(expectedText) {
+      await expect(this.validationMessage).toHaveText(expectedText);
+      await expect(this.validationMessage).toHaveCSS('border-color','rgb(220, 53, 69)');
     }
 
     

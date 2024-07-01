@@ -44,63 +44,52 @@ describe('Test the registration flow',()=>{
     });
 
     test('Test the empty name field',async({page})=>{
-
-        await mainPage.showEmptyNameError();
-        await expect(page.locator('div.invalid-feedback')).toHaveText('Name required');
-        await expect(page.locator('div.invalid-feedback')).toHaveCSS('border-color','rgb(220, 53, 69)');
+        await mainPage.showEmptyFieldError(mainPage.name,mainPage.registerModal);
+        await mainPage.checkErrorMessageText('Name required');
     });
 
     test('Test the invalid name field',async({page})=>{
-        await mainPage.showInvalidNameError();
-        await expect(page.locator('div.invalid-feedback')).toHaveText('Name is invalid');
-        await expect(page.locator('div.invalid-feedback')).toHaveCSS('border-color','rgb(220, 53, 69)');
+        await mainPage.showInvalidInputError(mainPage.name,"^^",mainPage.lastname);
+        await mainPage.checkErrorMessageText('Name is invalid');
     });
 
     test('Test the wrong length name field',async({page})=>{
-        await mainPage.showWrongLengthNameError();
-        await expect(page.locator('div.invalid-feedback')).toHaveText('Name has to be from 2 to 20 characters long');
-        await expect(page.locator('div.invalid-feedback')).toHaveCSS('border-color','rgb(220, 53, 69)');
+        await mainPage.showInvalidInputError(mainPage.name,"M",mainPage.lastname);
+        await mainPage.checkErrorMessageText('Name has to be from 2 to 20 characters long');
     });
 
     test('Test the empty last name field',async({page})=>{
-        await mainPage.showEmptyLastnameError();
-        await expect(page.locator('div.invalid-feedback')).toHaveText('Last name required');
-        await expect(page.locator('div.invalid-feedback')).toHaveCSS('border-color','rgb(220, 53, 69)');
+        await mainPage.showEmptyFieldError(mainPage.lastname,mainPage.registerModal);
+        await mainPage.checkErrorMessageText('Last name required');
     });
 
     test('Test the invalid last name field',async({page})=>{
-        await mainPage.showInvalidLastnameError();
-        await expect(page.locator('div.invalid-feedback')).toHaveText('Last name is invalid');
-        await expect(page.locator('div.invalid-feedback')).toHaveCSS('border-color','rgb(220, 53, 69)');
+        await mainPage.showInvalidInputError(mainPage.lastname,"^^",mainPage.email);
+        await mainPage.checkErrorMessageText('Last name is invalid');
     });
 
     test('Test the wrong length last name field',async({page})=>{
-        await mainPage.showWrongLengthLastnameError();
-        await expect(page.locator('div.invalid-feedback')).toHaveText('Last name has to be from 2 to 20 characters long');
-        await expect(page.locator('div.invalid-feedback')).toHaveCSS('border-color','rgb(220, 53, 69)');
+        await mainPage.showInvalidInputError(mainPage.lastname,"M",mainPage.email);
+        await mainPage.checkErrorMessageText('Last name has to be from 2 to 20 characters long');  
     });
 
     test('Test the incorrect email field',async({page})=>{
-        await mainPage.showIncorrectEmailError();
-        await expect(page.locator('div.invalid-feedback')).toHaveText('Email is incorrect');
-        await expect(page.locator('div.invalid-feedback')).toHaveCSS('border-color','rgb(220, 53, 69)');
+        await mainPage.showInvalidInputError(mainPage.email,"M",mainPage.password);
+        await mainPage.checkErrorMessageText('Email is incorrect'); 
     });
 
     test('Test the empty email field',async({page})=>{
-        await mainPage.showEmptyEmailError();
-        await expect(page.locator('div.invalid-feedback')).toHaveText('Email required');
-        await expect(page.locator('div.invalid-feedback')).toHaveCSS('border-color','rgb(220, 53, 69)');
+        await mainPage.showEmptyFieldError(mainPage.email,mainPage.password);
+        await mainPage.checkErrorMessageText('Email required'); 
     });
 
     test('Test the empty password field',async({page})=>{
-        await mainPage.showEmptyPasswordError();
-        await expect(page.locator('div.invalid-feedback')).toHaveText('Password required');
-        await expect(page.locator('div.invalid-feedback')).toHaveCSS('border-color','rgb(220, 53, 69)');
+        await mainPage.showEmptyFieldError(mainPage.password,mainPage.repeatPassword);
+        await mainPage.checkErrorMessageText('Password required'); 
     });
 
     test('Test the wrong password field',async({page})=>{
-        await mainPage.showWrongPasswordError();
-        await expect(page.locator('div.invalid-feedback')).toHaveText('Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter');
-        await expect(page.locator('div.invalid-feedback')).toHaveCSS('border-color','rgb(220, 53, 69)');
+        await mainPage.showInvalidInputError(mainPage.password,"g",mainPage.repeatPassword);
+        await mainPage.checkErrorMessageText('Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter'); 
     });
 });
