@@ -1,15 +1,9 @@
 // @ts-check
 const { defineConfig, devices } = require('@playwright/test');
+const dotenv = require('dotenv');
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// require('dotenv').config();
+dotenv.config();
 
-/**
- * @see https://playwright.dev/docs/test-configuration
- */
 module.exports = defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
@@ -24,10 +18,10 @@ module.exports = defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    baseURL: 'https://qauto2.forstudy.space',
+    baseURL: process.env.BASE_URL_STAGING,
     httpCredentials: {
-      username: 'guest',
-      password: 'welcome2qauto'
+      username: process.env.HTTP_USERNAME,
+      password: process.env.HTTP_PASSWORD,
     },
     screenshot: 'only-on-failure',
     video: 'on',
@@ -42,29 +36,27 @@ module.exports = defineConfig({
   projects: [
     {
       name: 'staging',
-      use: { ...devices['Desktop Firefox'],
-      baseURL: 'https://qauto2.forstudy.space',
-      httpCredentials: {
-        username: 'guest',
-        password: 'welcome2qauto'
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: process.env.BASE_URL_STAGING,
+        httpCredentials: {
+          username: process.env.HTTP_USERNAME,
+          password: process.env.HTTP_PASSWORD,
+        },
       },
-     },
-
     },
-
     {
       name: 'production',
-      use: { ...devices['Desktop Firefox'],
-      baseURL: 'https://qauto.forstudy.space',
-      httpCredentials: {
-        username: 'guest',
-        password: 'welcome2qauto'
-      }, 
-      retries: 2,
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: process.env.BASE_URL_PRODUCTION,
+        httpCredentials: {
+          username: process.env.HTTP_USERNAME,
+          password: process.env.HTTP_PASSWORD,
+        },
+        retries: 2,
+      },
     },
-
-    },
-
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
@@ -98,4 +90,3 @@ module.exports = defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
-
