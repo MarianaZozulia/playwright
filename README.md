@@ -10,41 +10,50 @@ This project contains automated tests written using Playwright. The following in
 ## Installation
 
 1. **Clone the repository**:
-- git clone https://github.com/MarianaZozulia/playwright.git
-- cd playwright
-   
+    ```sh
+    git clone https://github.com/MarianaZozulia/playwright.git
+    cd playwright
+    ```
 
 2. **Create a `.env` file**:
     - Copy the `.env.example` file to `.env` and fill in the necessary environment variables:
-    
+    ```sh
     cp .env.example .env
-    
+    ```
     - Example `.env` file:
-   
+    ```
     BASE_URL_STAGING=
     BASE_URL_PRODUCTION=
     HTTP_USERNAME=
     HTTP_PASSWORD=
-    
+    ```
 
 3. **Install dependencies**:
-- npm install
+    ```sh
+    npm install
+    ```
 
 4. **Install Playwright browsers**:
-- npx playwright install
-
+    ```sh
+    npx playwright install
+    ```
 
 ## Running Tests
 
 1. **Run all tests**:
-- npx playwright test
-    
+    ```sh
+    npx playwright test
+    ```
 
 2. **Run a registration test**:
-- npx playwright test tests/registration.spec.js
+    ```sh
+    npx playwright test tests/registration.spec.js
+    ```
 
 3. **Generate test report**:
-- npx playwright show-report
+    ```sh
+    npx playwright show-report
+    ```
 
 ## Project Structure
 
