@@ -1,6 +1,7 @@
-const { test, expect, describe,beforeEach, beforeAll } = require('@playwright/test');
-const { default: MainPage } = require('../integrations/pageObjects/components/mainPage/mainPage');
-import User from '../integrations/ data/models/User';
+const { expect ,test,describe,beforeEach,beforeAll,afterAll} = require('@playwright/test');
+const MainPage=require('../integrations/pageObjects/pages/mainPage');
+const User=require('../integrations/ data/models/User')
+
 
 
 function randomEmail(){

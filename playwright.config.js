@@ -43,7 +43,12 @@ module.exports = defineConfig({
           username: process.env.HTTP_USERNAME,
           password: process.env.HTTP_PASSWORD,
         },
+        storageState: 'storageState.json'
       },
+    },
+    {
+      name: 'setup',
+      testMatch: /.*\.setup\.spec\.js/,
     },
     {
       name: 'production',

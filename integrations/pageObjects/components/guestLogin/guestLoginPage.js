@@ -1,5 +1,5 @@
 import BasePage from "../../BasePage";
-import MainPage from "../mainPage/mainPage";
+import MainPage from "../../pages/mainPage/mainPage";
 
 export default class GuestLoginPage extends BasePage{
     constructor(page){

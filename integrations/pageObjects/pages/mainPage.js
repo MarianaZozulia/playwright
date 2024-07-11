@@ -1,8 +1,7 @@
-import BasePage from "../../BasePage";
 const { expect } = require('@playwright/test');
+const BasePage=require('../basePage')
 
-
-export default class MainPage extends BasePage{
+class MainPage extends BasePage{
     constructor(page){
         super(page,'/');
         this.signInButton=page.locator('button.btn.btn-outline-white.header_signin',{hasText:'Sign In'});
@@ -52,13 +51,5 @@ export default class MainPage extends BasePage{
       await expect(this.validationMessage).toHaveText(expectedText);
       await expect(this.validationMessage).toHaveCSS('border-color','rgb(220, 53, 69)');
     }
-
-    
-
-
-
-    
-
-
-
 }
+module.exports=MainPage;
