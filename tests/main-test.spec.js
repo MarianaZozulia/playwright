@@ -1,5 +1,5 @@
-import { test, expect, describe,beforeEach, afterAll } from '@playwright/test';
-import MainPage from '../integrations/pageObjects/components/mainPage/mainPage';
+const { expect ,test,describe,beforeAll,afterAll} = require('@playwright/test');
+const MainPage=require('../integrations/pageObjects/pages/mainPage')
 
 test.describe('Main page',()=>{
     let mainPage;

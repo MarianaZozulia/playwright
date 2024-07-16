@@ -1,6 +1,7 @@
-import BaseComponent from "./BaseComponent";
 
-export default class BasePage extends BaseComponent{
+const BaseComponent=require('../pageObjects/baseComponent')
+
+ class BasePage extends BaseComponent{
     constructor(page, url, container){
         const wrapper=container ?? page.locator('html');
         super(page,wrapper);
@@ -20,3 +21,4 @@ export default class BasePage extends BaseComponent{
         await locator.fill(text);
       }
 }
+module.exports=BasePage;
