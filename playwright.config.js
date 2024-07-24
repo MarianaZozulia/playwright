@@ -24,7 +24,7 @@ module.exports = defineConfig({
     {
       name: 'staging',
       use: {
-        ...devices['Desktop Firefox'],
+        ...devices['Desktop Chrome'],
         baseURL: process.env.BASE_URL_STAGING,
         httpCredentials: {
           username: process.env.HTTP_USERNAME,
