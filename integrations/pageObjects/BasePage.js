@@ -1,5 +1,5 @@
 
-const BaseComponent=require('../pageObjects/baseComponent')
+const BaseComponent=require('./baseComponent')
 
  class BasePage extends BaseComponent{
     constructor(page, url, container){
