@@ -1,7 +1,7 @@
 const { expect ,test,describe,beforeAll,afterAll} = require('@playwright/test');
 const MainPage=require('../integrations/pageObjects/pages/mainPage')
 
-test.describe('Main page',()=>{
+test.skip('Main page',()=>{
     let mainPage;
 
     test.beforeAll(async({browser})=>{

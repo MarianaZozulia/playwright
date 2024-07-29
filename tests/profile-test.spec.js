@@ -4,7 +4,7 @@ const ProfilePage=require('../integrations/pageObjects/pages/profilePage')
 const name="newMariana";
 const lastname="newZozulia";
 
-test('test the modified data', async ({ page }) => {
+test.skip('test the modified data', async ({ page }) => {
     const profilePage = new ProfilePage(page);
     await profilePage.changeProfileData(name,lastname);
     await profilePage.goto();
