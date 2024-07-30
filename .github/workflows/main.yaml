@@ -1,36 +1,23 @@
-name: My Playwright Tests
+name: Playwright API Tests
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  playwright-run:
+  test:
     runs-on: ubuntu-latest
 
-    container:
-      image: mcr.microsoft.com/playwright:v1.39.0-jammy
-
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
-      
-      - name: Set up environment variables
-        run: |
-          echo "BASE_URL_STAGING=${{ secrets.BASE_URL_STAGING }}" >> $GITHUB_ENV
-          echo "HTTP_USERNAME=${{ secrets.HTTP_USERNAME }}" >> $GITHUB_ENV
-          echo "HTTP_PASSWORD=${{ secrets.HTTP_PASSWORD }}" >> $GITHUB_ENV
-          echo "AUTH_URL=${{ secrets.AUTH_URL }}" >> $GITHUB_ENV
-          echo "AUTH_FILE_PATH=${{ secrets.AUTH_FILE_PATH }}" >> $GITHUB_ENV
-          echo "EMAIL=${{ secrets.EMAIL }}" >> $GITHUB_ENV
-          echo "PASSWORD=${{ secrets.PASSWORD }}" >> $GITHUB_ENV
 
-      - name: Install dependencies
-        run: npm install
+      - name: Build Docker image
+        run: docker build -t playwright-tests .
 
-      - name: Run Playwright tests
-        run: npx playwright test
-
-      - name: Upload Playwright test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: playwright-results
-          path: playwright-report
+      - name: Run Playwright API tests
+        run: docker run --rm playwright-tests

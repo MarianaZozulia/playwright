@@ -3,8 +3,8 @@ const BasePage=require('../basePage')
 
 class MainPage extends BasePage{
     constructor(page){
-        super(page,process.env.BASE_URL_STAGING);
-        this.signInButton=page.locator('button.btn.btn-outline-white.header_signin',{hasText:'Sign In'});
+        super(page,'/');
+        this.signInButton=page.locator('button.btn-outline-white',{hasText:'Sign In'});
         this.signInmodal=page.locator('div.modal-content');
         this.homeRegisterButton=this.signInmodal.locator('button.btn.btn-link',{hasText:'Registration'});
         this.registerModal=page.locator('div.modal-content');

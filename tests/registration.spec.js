@@ -21,7 +21,7 @@ function randomEmail(){
 let mainPage;
 
 
-describe.skip('Test the registration flow',()=>{
+describe('Test the registration flow',()=>{
     
 
     beforeEach(async({ page })=>{

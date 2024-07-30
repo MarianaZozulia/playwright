@@ -37,7 +37,7 @@ module.exports = defineConfig({
     {
       name: 'production',
       use: {
-        ...devices['Desktop Firefox'],
+        ...devices['Desktop Chrome'],
         baseURL: process.env.BASE_URL_PRODUCTION,
         httpCredentials: {
           username: process.env.HTTP_USERNAME,
@@ -45,8 +45,7 @@ module.exports = defineConfig({
         },
         storageState: process.env.AUTH_FILE_PATH,
         retries: 2,
-      },
-      dependencies: ['setup'],
+      }
     },
 
   ],
