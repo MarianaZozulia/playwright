@@ -20,4 +20,12 @@ jobs:
         run: docker build -t playwright-tests .
 
       - name: Run Playwright API tests
-        run: docker run --rm playwright-tests
+        env:
+          BASE_URL_STAGING: ${{ secrets.BASE_URL_STAGING }}
+          HTTP_USERNAME: ${{ secrets.HTTP_USERNAME }}
+          HTTP_PASSWORD: ${{ secrets.HTTP_PASSWORD }}
+          AUTH_URL: ${{ secrets.AUTH_URL }}
+          AUTH_FILE_PATH: ${{ secrets.AUTH_FILE_PATH }}
+          EMAIL: ${{ secrets.EMAIL }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+        run: docker run --rm -e BASE_URL_STAGING -e HTTP_USERNAME -e HTTP_PASSWORD -e AUTH_URL -e AUTH_FILE_PATH -e EMAIL -e PASSWORD playwright-tests
