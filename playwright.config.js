@@ -34,19 +34,6 @@ module.exports = defineConfig({
       },
       dependencies: ['setup']
     },
-    {
-      name: 'production',
-      use: {
-        ...devices['Desktop Chrome'],
-        baseURL: process.env.BASE_URL_PRODUCTION,
-        httpCredentials: {
-          username: process.env.HTTP_USERNAME,
-          password: process.env.HTTP_PASSWORD,
-        },
-        storageState: process.env.AUTH_FILE_PATH,
-        retries: 2,
-      }
-    },
 
   ],
 
